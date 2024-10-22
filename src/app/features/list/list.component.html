@@ -1,20 +1,6 @@
 
 <div style="margin-top: 5px;">
     @for (product of products; track $index) {
-    <mat-card class="example-card" appearance="outlined">
-        <mat-card-header>
-            <mat-card-title>Produto: {{product.id}}</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-            <p>{{product.title}}</p>
-        </mat-card-content>
-        <mat-card-footer class="example-card-footer" style="margin-left: 15px;">
-            <mat-chip-set aria-label="Chihuahua traits">
-                <mat-chip>Editar</mat-chip>
-                <mat-chip>Excluir</mat-chip>
-            </mat-chip-set>
-        </mat-card-footer>
-    </mat-card>
-    
-    }
+        <app-card [product]="product"></app-card>
+    } 
 </div>
