@@ -1,11 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { ProductsService } from '../../shared/services/products.service';
+import { MatCardModule } from '@angular/material/card';
+import { MatChip, MatChipsModule } from '@angular/material/chips';
 
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [],
+  imports: [MatCardModule, MatChipsModule],
   templateUrl: './list.component.html',
   styleUrl: './list.component.css'
 })
