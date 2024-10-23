@@ -1,12 +1,22 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-create',
   standalone: true,
-  imports: [],
+  imports: [MatButtonModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule],
   templateUrl: './create.component.html',
   styleUrl: './create.component.css'
 })
 export class CreateComponent {
+  form = new FormGroup({
+    title: new FormControl('', { nonNullable: true, validators: Validators.required })
+  })
 
+  onSubmit(){
+    this.form.controls.title.value;
+  }
 }
