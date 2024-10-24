@@ -9,7 +9,7 @@
         </mat-card-content>
         <mat-card-footer class="example-card-footer" style="margin-left: 15px;">
             <mat-chip-set>
-                <mat-chip>Editar</mat-chip>
+                <mat-chip (click)="edit.emit()">Editar</mat-chip>
                 <mat-chip>Excluir</mat-chip>
             </mat-chip-set>
         </mat-card-footer>
