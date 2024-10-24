@@ -26,11 +26,7 @@ export class CreateComponent {
   })
 
   onSubmit(){
-    this.matSnackBar.open("Item criado", "Ok",{
-      duration: 1500,
-      horizontalPosition: 'right',
-      verticalPosition: 'top'
-    });
+    this.matSnackBar.open("Item criado", "Ok");
 
     this.Router.navigateByUrl('/').catch()
     // this.productService.post({
