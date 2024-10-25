@@ -20,7 +20,7 @@ export const routes: Routes = [{
         product: (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
             const productService = inject(ProductsService)
 
-            
+            return productService.get(route.paramMap.get('id') as string)
         }
     },
     loadComponent: () => import('./features/edit/edit.component').then((m) => m.EditComponent)
