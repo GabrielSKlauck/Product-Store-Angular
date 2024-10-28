@@ -10,7 +10,7 @@
         <mat-card-footer class="example-card-footer" style="margin-left: 15px;">
             <mat-chip-set>
                 <mat-chip (click)="edit.emit()">Editar</mat-chip>
-                <mat-chip>Excluir</mat-chip>
+                <mat-chip (click)="onDelete()">Excluir</mat-chip>
             </mat-chip-set>
         </mat-card-footer>
     </mat-card>
