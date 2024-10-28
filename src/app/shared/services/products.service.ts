@@ -15,7 +15,7 @@ export class ProductsService {
   }
 
   get(id: string){
-    return this.httpClient.get<Product[]>(`/api/products/${id}`)
+    return this.httpClient.get<Product>(`/api/products/${id}`)
   }
 
   post(payload: ProductPayload){
