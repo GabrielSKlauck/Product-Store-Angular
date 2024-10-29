@@ -1,41 +1,15 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { ProductsService } from '../../shared/services/products.service';
 import { Product } from '../../shared/interfaces/product.interface';
 import { CardComponent } from './components/card/card.component';
 import { Router, RouterLink } from '@angular/router';
-import { MatButton, MatButtonModule } from '@angular/material/button';
-import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
 import { filter } from 'rxjs';
+import { ConfirmationDialogComponent, DialogService } from '../../shared/services/dialog.service';
 
 
-@Component({
-  selector: 'confirmation-dialog',
-  template: `
-    <h2 mat-dialog-title>Deletar</h2>
-<mat-dialog-content>
-  Deseja mesmo deletar?
-</mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-button (click)="onNo()">Nao</button>
-  <button mat-button (click)="onYes()" cdkFocusInitial>Sim</button>
-</mat-dialog-actions>
-  `,
-  standalone: true,
-  imports: [MatButtonModule, MatDialogModule],
 
-})
-export class ConfirmationDialogComponent {
-  matDialogRef = inject(MatDialogRef);
-
-  onNo() {
-    this.matDialogRef.close(false);
-  }
-
-  onYes() {
-    this.matDialogRef.close(true);
-  }
-}
 
 
 @Component({
@@ -50,7 +24,7 @@ export class ListComponent {
 
   productsService = inject(ProductsService);
   router = inject(Router)
-  matDialog = inject(MatDialog)
+  confirmationDialog = inject(DialogService)
 
   ngOnInit() {
     this.productsService.getAll().subscribe((products) => {
@@ -63,12 +37,12 @@ export class ListComponent {
   }
 
   onDelete(product: Product) {
-    this.matDialog.open(ConfirmationDialogComponent)
-    .afterClosed()
-    .pipe(filter((answer) => answer === true))
-    .subscribe(() => {
-      this.productsService.delete(product.id).subscribe(() => {});
-      location.reload()
+    this.confirmationDialog.openDialog()
+    .subscribe((answer) => {
+      if(answer){
+        this.productsService.delete(product.id).subscribe(() => {});
+        location.reload()
+      }
     })
   }
 }
