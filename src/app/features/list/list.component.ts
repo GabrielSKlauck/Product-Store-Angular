@@ -5,7 +5,7 @@ import { Product } from '../../shared/interfaces/product.interface';
 import { CardComponent } from './components/card/card.component';
 import { Router, RouterLink } from '@angular/router';
 import { MatButton, MatButtonModule } from '@angular/material/button';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 
 @Component({
@@ -16,15 +16,25 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
   Deseja mesmo deletar?
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button mat-dialog-close>Nao</button>
-  <button mat-button mat-dialog-close cdkFocusInitial>Sim</button>
+  <button mat-button (click)="onNo()">Nao</button>
+  <button mat-button (click)="onYes()" cdkFocusInitial>Sim</button>
 </mat-dialog-actions>
   `,
   standalone: true,
   imports: [MatButtonModule, MatDialogModule],
   
 })
-export class COnfirmationDialogComponent {}
+export class ConfirmationDialogComponent {
+  matDialogRef = inject(MatDialogRef);
+
+  onNo(){
+    this.matDialogRef.close(false);
+  }
+
+  onYes(){
+    this.matDialogRef.close(true);
+  }
+}
 
 
 @Component({
@@ -52,8 +62,8 @@ export class ListComponent {
   }
 
   onDelete(product: Product) {
-    this.matDialog.open(COnfirmationDialogComponent).afterClosed().subscribe((data) => {
-      console.log(data)
+    this.matDialog.open(ConfirmationDialogComponent).afterClosed().subscribe((answer: boolean) => {
+      console.log(answer)
     })
   }
 }
