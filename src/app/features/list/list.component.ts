@@ -6,6 +6,7 @@ import { CardComponent } from './components/card/card.component';
 import { Router, RouterLink } from '@angular/router';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { filter } from 'rxjs';
 
 
 @Component({
@@ -22,16 +23,16 @@ import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dial
   `,
   standalone: true,
   imports: [MatButtonModule, MatDialogModule],
-  
+
 })
 export class ConfirmationDialogComponent {
   matDialogRef = inject(MatDialogRef);
 
-  onNo(){
+  onNo() {
     this.matDialogRef.close(false);
   }
 
-  onYes(){
+  onYes() {
     this.matDialogRef.close(true);
   }
 }
@@ -62,8 +63,12 @@ export class ListComponent {
   }
 
   onDelete(product: Product) {
-    this.matDialog.open(ConfirmationDialogComponent).afterClosed().subscribe((answer: boolean) => {
-      console.log(answer)
+    this.matDialog.open(ConfirmationDialogComponent)
+    .afterClosed()
+    .pipe(filter((answer) => answer === true))
+    .subscribe(() => {
+      this.productsService.delete(product.id).subscribe(() => {});
+      location.reload()
     })
   }
 }
