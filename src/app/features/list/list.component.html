@@ -1,7 +1,7 @@
 <div style="margin-top: 5px;">
     <a mat-raised-button color="primary" [routerLink]="['/create-product']">Criar produto</a>
 
-    @for (product of products; track $index) {
+    @for (product of products(); track $index) {
     <app-card [product]="product" (edit)="onEdit(product)" (delete)="onDelete(product)"></app-card>
     }
 </div>

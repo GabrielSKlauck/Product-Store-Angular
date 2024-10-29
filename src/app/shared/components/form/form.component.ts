@@ -3,11 +3,12 @@ import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angula
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { Product } from '../../interfaces/product.interface';
+import { MatInput, MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-form',
   standalone: true,
-  imports: [MatButtonModule, MatFormFieldModule, ReactiveFormsModule],
+  imports: [MatButtonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule],
   templateUrl: './form.component.html',
   styleUrl: './form.component.css'
 })
