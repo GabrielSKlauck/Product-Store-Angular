@@ -1,20 +1,20 @@
 {
   "products": [
     {
-      "title": "Produto da cris 3",
-      "id": "1630"
-    },
-    {
-      "id": "c513",
-      "title": "Novo produto 2"
-    },
-    {
-      "id": "63ce",
-      "title": "Novo produto 4"
-    },
-    {
       "id": "6c90",
       "title": "Sapato"
+    },
+    {
+      "id": "31b2",
+      "title": "Camisa"
+    },
+    {
+      "id": "cc70",
+      "title": "Calça"
+    },
+    {
+      "id": "0a1c",
+      "title": "Meia"
     }
   ]
 }
