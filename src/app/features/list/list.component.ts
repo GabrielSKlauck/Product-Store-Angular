@@ -4,9 +4,8 @@ import { Product } from '../../shared/interfaces/product.interface';
 import { CardComponent } from './components/card/card.component';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialog } from '@angular/material/dialog';
-import { filter } from 'rxjs';
-import { ConfirmationDialogComponent, DialogService } from '../../shared/services/dialog.service';
+import { DialogService } from '../../shared/services/dialog.service';
+import { NoItensComponent } from './components/no-itens/no-itens.component';
 
 
 
@@ -15,12 +14,15 @@ import { ConfirmationDialogComponent, DialogService } from '../../shared/service
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [CardComponent, RouterLink, MatButtonModule,],
+  imports: [CardComponent, RouterLink, MatButtonModule, NoItensComponent],
   templateUrl: './list.component.html',
   styleUrl: './list.component.css'
 })
 export class ListComponent {
-  products = signal<Product[]>(inject(ActivatedRoute).snapshot.data['products']);
+  products = signal<Product[]>(
+    //inject(ActivatedRoute).snapshot.data['products']
+    []
+  );
 
   productsService = inject(ProductsService);
   router = inject(Router)

@@ -3,5 +3,9 @@
 
     @for (product of products(); track $index) {
     <app-card [product]="product" (edit)="onEdit(product)" (delete)="onDelete(product)"></app-card>
+    <app-no-itens></app-no-itens>
+    }
+    @empty {
+        <app-no-itens></app-no-itens>
     }
 </div>
