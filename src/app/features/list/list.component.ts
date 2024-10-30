@@ -20,8 +20,8 @@ import { NoItensComponent } from './components/no-itens/no-itens.component';
 })
 export class ListComponent {
   products = signal<Product[]>(
-    //inject(ActivatedRoute).snapshot.data['products']
-    []
+    inject(ActivatedRoute).snapshot.data['products']
+    
   );
 
   productsService = inject(ProductsService);
